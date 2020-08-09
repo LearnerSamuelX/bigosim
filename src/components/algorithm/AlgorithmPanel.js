@@ -1,7 +1,10 @@
 import React,{useEffect,useState} from 'react';
 import { connect } from 'react-redux';
+import './AlgorithmPanel.css'
 
 const AlgorithmPanel = () => {
+    const [lower,setLower]=useState(0)
+    const [upper,setUpper]=useState(0)
     const [algo,setAlgo]= useState('');
 
     useEffect(()=>{
@@ -22,7 +25,7 @@ const AlgorithmPanel = () => {
     }
 
     return(
-        <div>
+        <div className='controlpanel'>
             <form onSubmit={handleSubmit}>
             <label>Select a sorting method: </label>
             <select onChange={handleSelect}>
@@ -30,6 +33,12 @@ const AlgorithmPanel = () => {
                 <option value='insertion'>Insertion Sort</option>
                 <option value='select'>Selection Sort</option>
             </select>
+            <label>Highest Value:</label>
+            <input type='text'></input>
+            <label>Lowest Value:</label> 
+            <input type='text'></input>
+            <label>Number of Arrays:</label>
+            <input type='range'className='slider'></input>
             <input type='submit'value='Run'></input>
             </form>
         </div>
