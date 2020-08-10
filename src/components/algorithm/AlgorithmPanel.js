@@ -5,16 +5,22 @@ import './AlgorithmPanel.css'
 const AlgorithmPanel = () => {
     const [lower,setLower]=useState(0)
     const [upper,setUpper]=useState(0)
+    const [arraynum,setArrayNum]=useState(7)
     const [algo,setAlgo]= useState('');
 
     useEffect(()=>{
         if(algo){
             console.log(`${algo} selected.`)
         }
-    })
+        console.log(arraynum)
+    },[arraynum])
 
     const handleSelect = (e) =>{
         setAlgo(e.target.value)
+    }
+
+    const sliding = (e)=>{
+        setArrayNum(e.target.value)
     }
 
     const handleSubmit =(e)=>{
@@ -37,9 +43,9 @@ const AlgorithmPanel = () => {
             <input type='text'></input>
             <label>Lowest Value:</label> 
             <input type='text'></input>
-            <label>Number of Arrays:</label>
-            <input type='range'className='slider'></input>
-            <input type='submit'value='Run'></input>
+            <label>Number of Arrays: {arraynum}</label>
+            <input type='range'className='slider'min="1" max="15"value={arraynum}onChange={sliding}></input>
+            <input type='submit'className='runbutton'value='Run'></input>
             </form>
         </div>
     )

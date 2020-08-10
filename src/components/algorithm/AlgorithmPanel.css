@@ -1,7 +1,8 @@
 .controlpanel{
-    width:40rem;
+    width:25rem;
     margin:0 auto 0.5rem auto;
-    /* border:rgb(119, 252, 119) 2.5px solid; */
+    border:rgb(119, 252, 119) 2.5px solid;
+    background-color: rgb(119, 252, 119);
 }
 
 .controlpanel form{
@@ -17,7 +18,7 @@
     text-align:left;
     font-size:15px;
     font-weight:bold;
-    margin-bottom:0.25rem;
+    margin-bottom:0.5rem;
 }
 
 .controlpanel select{
@@ -28,11 +29,18 @@
     margin-bottom:1rem;
 }
 
+.runbutton{
+    width:7.5rem;
+    margin-top:1.25rem;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 .slider{
   appearance: none;
   width: 100%;
   height: 15px;
-  background: #b8b8b8;
+  background: #61341a;
   outline:none;
 }
 
@@ -40,8 +48,9 @@
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
-    height: 12px;
-    background: #3336df;
+    height: 25px;
+    background: #2c99ff;
+    border:yellow 2px solid;
     cursor: pointer;
 }
 
