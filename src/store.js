@@ -7,7 +7,6 @@ const reducers = {
     createARun
 }
 
-
 const mainRootReducer = combineReducers(reducers)
 
 export const configureStore = () => createStore(mainRootReducer)

@@ -1,14 +1,26 @@
-import {CHOOSE_ALGO} from './actions'
+import {CREATE_A_RUN} from './actions'
 
 const initialState = []
 export const createARun = (state=initialState,action)=>{
-    const {text,low,high,arraynum} = action;
-    const aNewRun = {
-        text,
-        low,
-        high,
-        arraynum
-    }
 
-    return state.concat(aNewRun)
+    const {type,payload} = action;
+
+    switch (type){
+        case CREATE_A_RUN:{
+            const {text,low,high,arraynum} = payload;
+            
+            const aNewRun = {
+                text,
+                low,
+                high,
+                arraynum
+            }
+            console.log('Success! ')
+            console.log(aNewRun)
+            return state.concat(aNewRun)
+        }
+
+        default:
+            return state
+    }
 }

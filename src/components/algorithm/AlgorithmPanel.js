@@ -3,7 +3,7 @@ import {createARun} from './actions'
 import { connect } from 'react-redux';
 import './AlgorithmPanel.css'
 
-const AlgorithmPanel = () => {
+const AlgorithmPanel = ({hahaha}) => {
     const [algo,setAlgo]= useState('');
     const [lower,setLower]=useState(0)
     const [upper,setUpper]=useState(0)
@@ -46,6 +46,7 @@ const AlgorithmPanel = () => {
         }
     }
 
+
     return(
         <div className='controlpanel'>
             <form onSubmit={handleSubmit}>
@@ -61,7 +62,9 @@ const AlgorithmPanel = () => {
             <input type='text'value={upper}onChange={upperFunc}></input>
             <label>Number of Arrays: {arraynum}</label>
             <input type='range'className='slider'min="1" max="15"value={arraynum}onChange={sliding}></input>
-            <input type='submit'className='runbutton'value='Run'></input>
+            <input type='submit'className='runbutton'value='Run'onClick={()=>{
+                hahaha(algo,lower,upper,arraynum)
+            }}></input>
             </form>
         </div>
     )
@@ -71,9 +74,11 @@ const mapStateToProps = state => {
     return state.createARun
 };
 
-const mapDispatchToProps = dispatch =>
-
-    (algo,lower,upper,arraynum)=>dispatch(createARun(algo,lower,upper,arraynum))
+const mapDispatchToProps = dispatch => {
+    return{
+        hahaha:(algo,lower,upper,arraynum)=>dispatch(createARun(algo,lower,upper,arraynum))
+    }
+}
 
 
 
