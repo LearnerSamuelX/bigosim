@@ -1,13 +1,15 @@
 import React,{useEffect,useRef,useState} from 'react';
+import { connect } from 'react-redux';
 import "./Barchart.css"
 import * as d3 from 'd3'
 
-const Barchart = () => {
+const Barchart = ({chartdata}) => {
     const [XArray,setXArray]=useState([0,1,2,3,4,5,6])
     const [Yarray,setYArray]=useState([23,24,32,5,6,7,8,12])
     const d3Container = useRef(null);   
 
     useEffect(()=>{
+        // console.log('The chart data is: '+chartdata)
         const height = 100 //height of the bar
         const width = 185.5
 
@@ -52,4 +54,17 @@ const Barchart = () => {
         </div>
     )
 }
-export default Barchart
+
+const mapStateToProps = state => ({
+    chartdata:state.chartChange
+});
+
+const mapDispatchToProps = dispatch => {
+    return{
+        
+    }
+}
+
+
+
+export default connect(mapStateToProps)(Barchart)

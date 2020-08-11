@@ -2,9 +2,13 @@
 import { createStore,combineReducers } from 'redux';
 // import {slidebar} from './components/slidebar/reducers'
 import {createARun} from './components/algorithm/reducers'
+import {chartChange} from './components/chart/reducers'
 
 const reducers = {
+
+    chartChange,
     createARun
+    
 }
 
 const mainRootReducer = combineReducers(reducers)

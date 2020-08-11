@@ -1,9 +1,10 @@
 import React,{useEffect,useState} from 'react';
+import {changeChart} from '../chart/actions'
 import {createARun} from './actions'
 import { connect } from 'react-redux';
 import './AlgorithmPanel.css'
 
-const AlgorithmPanel = ({hahaha}) => {
+const AlgorithmPanel = ({mainstate,onChartChanged,onRunPressed}) => {
     const [algo,setAlgo]= useState('');
     const [lower,setLower]=useState(0)
     const [upper,setUpper]=useState(0)
@@ -13,7 +14,7 @@ const AlgorithmPanel = ({hahaha}) => {
         if(algo){
             console.log(`${algo} selected.`)
         }
-    
+        onChartChanged(lower,upper,arraynum)  //deliver the state to chartChange state in the store
         console.log(
             {
                 'lower':lower,
@@ -62,25 +63,25 @@ const AlgorithmPanel = ({hahaha}) => {
             <input type='text'value={upper}onChange={upperFunc}></input>
             <label>Number of Arrays: {arraynum}</label>
             <input type='range'className='slider'min="1" max="15"value={arraynum}onChange={sliding}></input>
-            <input type='submit'className='runbutton'value='Run'onClick={()=>{
-                hahaha(algo,lower,upper,arraynum)
-            }}></input>
+            <input type='submit'className='runbutton'value='Run'
+                onClick={()=>{
+                onRunPressed(algo,lower,upper,arraynum)}}>
+                </input>
             </form>
         </div>
     )
 }
 
-const mapStateToProps = state => {
-    return state.createARun
-};
+//dispatch is not a function
+const mapStateToProps = state => ({
+    mainstate:state.createARun
+});
 
 const mapDispatchToProps = dispatch => {
     return{
-        hahaha:(algo,lower,upper,arraynum)=>dispatch(createARun(algo,lower,upper,arraynum))
+        onChartChanged:(lower,upper,arraynum)=>dispatch(changeChart(lower,upper,arraynum)),
+        onRunPressed:(algo,lower,upper,arraynum)=>dispatch(createARun(algo,lower,upper,arraynum))
     }
 }
 
-
-
-// connect(mapStateToProps, mapDispatchToProps)(AlgorithmPanel)
 export default connect(mapStateToProps, mapDispatchToProps)(AlgorithmPanel)
