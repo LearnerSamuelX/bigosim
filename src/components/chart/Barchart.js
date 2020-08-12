@@ -3,18 +3,20 @@ import { connect } from 'react-redux';
 import "./Barchart.css"
 import * as d3 from 'd3'
 
-const Barchart = ({chartdata}) => {
+const Barchart = ({chartData}) => {
     const [XArray,setXArray]=useState([0,1,2,3,4,5,6])
     const [Yarray,setYArray]=useState([23,24,32,5,6,7,8,12])
     const d3Container = useRef(null);   
 
     useEffect(()=>{
-        // console.log('The chart data is: '+chartdata)
+        console.log(chartData)
         const height = 100 //height of the bar
         const width = 185.5
 
-        const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
-        
+        // const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
+        const svg = d3.select('.svg-canvas')
+        svg.selectAll("*").remove()
+
         var x = d3.scaleLinear().domain([0,7]).range([0,width])
         var y = d3.scaleLinear().domain([0,d3.max(Yarray)]).range([height,0])
 
@@ -50,20 +52,21 @@ const Barchart = ({chartdata}) => {
     return(
         <div id='chart-container'>
             <h3>Bar Chart</h3>
-            <div className="d3-component"ref={d3Container}></div>
+            {/* <div className="d3-component"ref={d3Container}></div> */}
+            <svg className="svg-canvas" width="400px" height="200px"></svg>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    chartdata:state.chartChange
+    chartData:state.chartChange
 });
 
-const mapDispatchToProps = dispatch => {
-    return{
+// const mapDispatchToProps = dispatch => {
+//     return{
         
-    }
-}
+//     }
+// }
 
 
 

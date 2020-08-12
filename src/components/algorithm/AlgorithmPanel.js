@@ -15,6 +15,7 @@ const AlgorithmPanel = ({mainstate,onChartChanged,onRunPressed}) => {
             console.log(`${algo} selected.`)
         }
         onChartChanged(lower,upper,arraynum)  //deliver the state to chartChange state in the store
+        console.log('Algo Panel')
         console.log(
             {
                 'lower':lower,

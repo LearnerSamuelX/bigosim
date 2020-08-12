@@ -7,16 +7,18 @@ export const chartChange = (state=initialState,action) => {
 
     switch(type){
         case CHART_CHANGE:{
-           const {low,upper,arraynum} = payload;
+           const {lower,upper,arraynum} = payload;
 
            const chartMovement = {
-               low,
+               lower,
                upper,
                arraynum
            }
            console.log(chartMovement)
            console.log('Chart Change Testing.')
 
+           //concat, but make sure the last one is rendered
+           
            return state.concat(chartMovement)
         }
         

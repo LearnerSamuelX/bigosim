@@ -11,6 +11,6 @@ const reducers = {
     
 }
 
-const mainRootReducer = combineReducers(reducers)
+const rootReducer = combineReducers(reducers)
 
-export const configureStore = () => createStore(mainRootReducer)
+export const configureStore = () => createStore(rootReducer)
