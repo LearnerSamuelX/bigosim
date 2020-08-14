@@ -2,7 +2,9 @@
     width:25rem;
     margin:0 auto 0.5rem auto;
     border:rgb(119, 252, 119) 2.5px solid;
+    border-radius: 50px;
     background-color: rgb(119, 252, 119);
+
 }
 
 .controlpanel form{

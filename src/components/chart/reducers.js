@@ -1,18 +1,16 @@
 import {CHART_CHANGE} from './actions'
 
-const initialState = []
+const initialState = [{anArray:[]}]
 
 export const chartChange = (state=initialState,action) => {
     const {type,payload} = action;
 
     switch(type){
         case CHART_CHANGE:{
-           const {lower,upper,arraynum} = payload;
+           const {anArray} = payload;
 
            const chartMovement = {
-               lower,
-               upper,
-               arraynum
+                anArray
            }
            console.log(chartMovement)
            console.log('Chart Change Testing.')

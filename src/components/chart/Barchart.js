@@ -4,14 +4,39 @@ import "./Barchart.css"
 import * as d3 from 'd3'
 
 const Barchart = ({chartData}) => {
-    const [XArray,setXArray]=useState([0,1,2,3,4,5,6])
-    const [Yarray,setYArray]=useState([23,24,32,5,6,7,8,12])
-    const d3Container = useRef(null);   
+    let newArray = []
+    let len = chartData.length
+
+    const [XArray,setXArray]=useState([chartData])
+    const [Yarray,setYArray]=useState(chartData[len-1].anArray) //so the initial state here should be an empty array
+    // const d3Container = useRef(null);   
+
 
     useEffect(()=>{
-        console.log(chartData)
-        const height = 100 //height of the bar
-        const width = 185.5
+            let len = chartData.length
+            console.log(chartData.length)
+            newArray = chartData[len-1].anArray
+            setYArray(newArray)
+
+        // if(chartData.length>1){
+           
+        //     let len = chartData.length
+        //     let plate = chartData[len-1] //display the last element from chartChange state 
+        //     //compute value of each element of the array
+        //     let size = plate.arraynum
+        //     // console.log(size)
+            
+        //     for(let i=0;i<size;i++){
+        //         let newElement = Math.floor(Math.random()*100)
+        //         newArray.push(newElement)
+        //     }
+        //     console.log('hahahaha')
+            
+        // }
+
+        if(newArray.length!==0){
+        const height = 70 //height of the actual chart, different than the svg element
+        const width = 26.5*newArray.length //width of the actual chart, different than the svg element
 
         // const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
         const svg = d3.select('.svg-canvas')
@@ -23,7 +48,9 @@ const Barchart = ({chartData}) => {
         var xAxis = d3.axisBottom(x).ticks(8)
         var yAxis = d3.axisLeft(y).ticks(5)
 
-        var chartGroup = svg.append('g').attr('transform','translate(100,50)')
+        //locate the chart in the middle of the svg frame: 800/2 - width/2
+        var chartGroup = svg.append('g').attr('transform','translate('+(400 - width/2)+',300)')
+        
         
         chartGroup.selectAll("rect").data(Yarray).enter().append("rect")
                 .attr("height",(d,i)=>d*3)
@@ -45,15 +72,18 @@ const Barchart = ({chartData}) => {
         chartGroup.append('g').attr('class','axis x')
                 .attr('transform','translate(0,'+height+')')
                 .call(xAxis)
-        
-    })
+        }
+    },[chartData,Yarray])
 
+    const newArrayFunc = (a) =>{
+        setYArray(a)
+    }
 
     return(
         <div id='chart-container'>
             <h3>Bar Chart</h3>
             {/* <div className="d3-component"ref={d3Container}></div> */}
-            <svg className="svg-canvas" width="400px" height="200px"></svg>
+            <svg className="svg-canvas" width="800px" height="400px"></svg>
         </div>
     )
 }
