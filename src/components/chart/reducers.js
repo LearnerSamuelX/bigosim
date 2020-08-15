@@ -16,7 +16,6 @@ export const chartChange = (state=initialState,action) => {
            console.log('Chart Change Testing.')
 
            //concat, but make sure the last one is rendered
-           
            return state.concat(chartMovement)
         }
         

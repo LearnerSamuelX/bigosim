@@ -1,9 +1,9 @@
 //choose a algorithm here from the following:  selection sort, insertion sort & bubble sort
 
 export const CREATE_A_RUN = 'CREATE_A_RUN'
-export const createARun = (text,arraynum)=>({
+export const createARun = (text,anArray)=>({
     type:CREATE_A_RUN,
-    payload:{text,arraynum}
+    payload:{text,anArray}
 })
 
 /*
