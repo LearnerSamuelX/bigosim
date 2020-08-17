@@ -15,7 +15,7 @@ const Barchart = ({chartData}) => {
 
     useEffect(()=>{
         let len = chartData.length
-        console.log(chartData.length)
+        console.log(chartData.length) //now it increases over time, need to find a way to truncate it
         newArray = chartData[len-1].anArray
         setYArray(newArray)
 

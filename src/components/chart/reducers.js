@@ -1,4 +1,4 @@
-import {CHART_CHANGE} from './actions'
+import {CREATE_ARRAY,CHART_CHANGE} from './actions'
 
 const initialState = [{anArray:[]}]
 
@@ -6,10 +6,11 @@ export const chartChange = (state=initialState,action) => {
     const {type,payload} = action;
 
     switch(type){
-        case CHART_CHANGE:{
-           const {anArray} = payload;
+        case CREATE_ARRAY:{
+           const {algo,anArray} = payload;
 
            const chartMovement = {
+                algo,
                 anArray
            }
            console.log(chartMovement)
@@ -17,6 +18,14 @@ export const chartChange = (state=initialState,action) => {
 
            //concat, but make sure the last one is rendered
            return state.concat(chartMovement)
+        }
+
+        case CHART_CHANGE: {
+            const { switchButton }=payload;  //
+    
+                console.log(state)
+                console.log('Sorting Algorithm goes here')
+        
         }
         
         default:

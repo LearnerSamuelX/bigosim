@@ -1,32 +1,31 @@
 import React,{useEffect,useState} from 'react';
-import {changeChart} from '../chart/actions'
+import {createArray,chartChange} from '../chart/actions'
 import {createARun} from './actions'
 import { connect } from 'react-redux';
 import './AlgorithmPanel.css'
 
-const AlgorithmPanel = ({chartState,onChartChanged,onRunPressed}) => {
+const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
     
     let newArray = []
+    
     const [algo,setAlgo]= useState('bubble');
     const [arraynum,setArrayNum]=useState(7)  //source of origin
     
+    
 
     useEffect(()=>{
-
         for(let i=0;i<arraynum;i++){
             let newElement = Math.floor(Math.random()*100)
             newArray.push(newElement)
         }
 
         if(algo){
-            console.log(`${algo} selected.`)
-            onRunPressed(algo,newArray)
+            // console.log(`${algo} selected.`)
         }
 
         if(newArray.length>0){
-            console.log(newArray)
-            // console.log(aNewArray)
-            onChartChanged(newArray)  //deliver the state to chartChange state in the store
+            // console.log(newArray)
+            onArrayCreated(algo,newArray)  //deliver the state to chartChange state in the store
         }
         
     },[arraynum,algo])
@@ -41,6 +40,7 @@ const AlgorithmPanel = ({chartState,onChartChanged,onRunPressed}) => {
 
     const handleSubmit =(e)=>{
         e.preventDefault()
+        onButtonClicked(1)
     }
 
 
@@ -56,23 +56,22 @@ const AlgorithmPanel = ({chartState,onChartChanged,onRunPressed}) => {
             
                 <label>Number of Arrays: {arraynum}</label>
                 <input type='range'className='slider'min="1" max="15"value={arraynum}onChange={sliding}></input>
-                <input type='submit'className='runbutton'value='Run'
-                    onClick={()=>{onRunPressed(algo,newArray)}}></input>
-
+                <input type='submit'className='runbutton'value='Run'onClick={handleSubmit}></input>
+                    
             </form>
         </div>
     )
 }
 
-//dispatch is not a function
 const mapStateToProps = state => ({
-    chartState:state.chartChange
+    chartState:state.chartChange[state.chartChange.length - 1] //it is not chartChange state
 });
 
 const mapDispatchToProps = dispatch => {
     return{
-        onChartChanged:(anArray)=>dispatch(changeChart(anArray)),
-        onRunPressed:(algo,anArray)=>dispatch(createARun(algo,anArray))
+        onArrayCreated:(algo,anArray)=>dispatch(createArray(algo,anArray)),
+        
+        onButtonClicked:()=>dispatch(chartChange())
     }
 }
 
