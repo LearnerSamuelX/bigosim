@@ -15,15 +15,22 @@ const Barchart = ({chartData}) => {
 
     useEffect(()=>{
         let len = chartData.length
-        console.log(chartData.length) //now it increases over time, need to find a way to truncate it
-        newArray = chartData[len-1].anArray
-        setYArray(newArray)
+        console.log(chartData) //now it increases over time, need to find a way to truncate it
+        if(chartData[len-1].anArray===chartData[len-1].sorted ||chartData[len-1].sorted.length===0){
+            newArray = chartData[len-1].anArray
+            setYArray(newArray)
+        }else{
+            //insert the recursion data here
+            console.log('fuck')
+            //setYArray(changed_array )
+        }
+        
+
 
         if(newArray.length!==0){
             const width = 26.5*newArray.length //width of the actual chart, different than the svg element
             const height = 70 //height of the actual chart, different than the svg element
        
-
             // const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
             const svg = d3.select('.svg-canvas')
             svg.selectAll("*").remove()

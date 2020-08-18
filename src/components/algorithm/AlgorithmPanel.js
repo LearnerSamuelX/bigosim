@@ -12,15 +12,10 @@ const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
     const [arraynum,setArrayNum]=useState(7)  //source of origin
     
     
-
     useEffect(()=>{
         for(let i=0;i<arraynum;i++){
             let newElement = Math.floor(Math.random()*100)
             newArray.push(newElement)
-        }
-
-        if(algo){
-            // console.log(`${algo} selected.`)
         }
 
         if(newArray.length>0){
@@ -70,7 +65,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return{
         onArrayCreated:(algo,anArray)=>dispatch(createArray(algo,anArray)),
-        
         onButtonClicked:()=>dispatch(chartChange())
     }
 }
