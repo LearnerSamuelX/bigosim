@@ -13,11 +13,11 @@ export const chartChange = (state=initialState,action) => {
 
            const chartMovement = {
                 algo,
-                anArray,
-                sorted:anArray
+                anArray:anArray,
+                sorted:[]
            }
-        //    console.log(chartMovement)
-           console.log('Chart Change Testing.')
+
+           console.log('Slider Movement Tracked')
 
            //concat, but make sure the last one is rendered
 
@@ -25,34 +25,30 @@ export const chartChange = (state=initialState,action) => {
         }
 
         case CHART_CHANGE: {
-            
-            // console.log(state)
+            //the inputs for new states are from CHANGES made on exsiting state
             let len = state.length
+            console.log(state[len-1]) 
             let method = state[len-1].algo
             let ref = state[len-1].anArray
-            let cards = state[len-1].sorted
-            let swapped=''
+            let tobesorted = state[len-1].anArray.slice()
+            let swapped = []
 
             if(method==='bubble'){
-                //to confirm if it is completely unsorted
-                if(cards===state[len-1].anArray){
-                    console.log(cards)
-                    swapped=bubblesort(cards)
-                    console.log('bubble algo, and exports the array for each step')
-
-                //now when the sorting is underway but yet to be finished, the card stack is differnt than the anArray
-                }else{
-                    swapped=bubblesort(cards)
+                if(tobesorted.length===0){
+                    swapped = bubblesort(tobesorted)
+                }else if(tobesorted.length!==0){
+                    swapped = bubblesort(tobesorted)
                 }
-
+                
+                //swapping these keys
                 const sortUpdate = {
                     algo:method,
                     anArray:ref,
                     sorted:swapped
                 }
-
                 return state.concat(sortUpdate)
             }
+            
 
         }
         

@@ -8,11 +8,6 @@ export function bubblesort(item){
             item[i]=cursor
             console.log(item)
             return item
-        }else{
-            //already been sorted
-            return item
         }
-        
     }
-
 }

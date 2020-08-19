@@ -15,17 +15,21 @@ const Barchart = ({chartData}) => {
 
     useEffect(()=>{
         let len = chartData.length
-        console.log(chartData) //now it increases over time, need to find a way to truncate it
-        if(chartData[len-1].anArray===chartData[len-1].sorted ||chartData[len-1].sorted.length===0){
+        // console.log('chartData:')
+        // console.log(chartData) //now it increases over time, need to find a way to truncate it
+        if(chartData[len-1].anArray===chartData[len-1].sorted || chartData[len-1].sorted.length===0){
+            console.log(chartData[len-1].sorted.length)
             newArray = chartData[len-1].anArray
+            console.log('Initial Render')
             setYArray(newArray)
-        }else{
-            //insert the recursion data here
-            console.log('fuck')
-            //setYArray(changed_array )
         }
+        // else{
+        //     //insert the recursion data here
+        //     console.log('Sorting Started')
+        //     console.log(chartData[len-1].sorted)
+        //     // setYArray(chartData[len-1].sorted)
+        // }
         
-
 
         if(newArray.length!==0){
             const width = 26.5*newArray.length //width of the actual chart, different than the svg element

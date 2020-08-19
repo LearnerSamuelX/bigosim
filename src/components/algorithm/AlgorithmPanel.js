@@ -19,7 +19,6 @@ const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
         }
 
         if(newArray.length>0){
-            // console.log(newArray)
             onArrayCreated(algo,newArray)  //deliver the state to chartChange state in the store
         }
         
@@ -35,7 +34,8 @@ const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
 
     const handleSubmit =(e)=>{
         e.preventDefault()
-        onButtonClicked(1)
+        onButtonClicked()
+        // onButtonClicked(chartState.algo,chartState.anArray)
     }
 
 
@@ -66,6 +66,7 @@ const mapDispatchToProps = dispatch => {
     return{
         onArrayCreated:(algo,anArray)=>dispatch(createArray(algo,anArray)),
         onButtonClicked:()=>dispatch(chartChange())
+        // onButtonClicked:(method,copiedarray)=>dispatch(chartChange(method,copiedarray))
     }
 }
 

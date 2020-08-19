@@ -7,7 +7,6 @@ export const createArray = (algo,anArray)=>({
 })
 
 export const CHART_CHANGE = 'CHART_CHANGE'
-export const chartChange = (switchButton)=>({
+export const chartChange = ()=>({
     type:CHART_CHANGE,
-    payload:{switchButton}
 })
