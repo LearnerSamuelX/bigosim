@@ -15,8 +15,7 @@ const Barchart = ({chartData}) => {
 
     useEffect(()=>{
         let len = chartData.length
-        // console.log('chartData:')
-        // console.log(chartData) //now it increases over time, need to find a way to truncate it
+     
         if(chartData[len-1].anArray===chartData[len-1].sorted || chartData[len-1].sorted.length===0){
             console.log(chartData[len-1].sorted.length)
             newArray = chartData[len-1].anArray

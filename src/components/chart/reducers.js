@@ -39,11 +39,10 @@ export const chartChange = (state=initialState,action) => {
                 }else if(tobesorted.length!==0){
                     swapped = bubblesort(tobesorted)
                 }
-                
                 //swapping these keys
                 const sortUpdate = {
                     algo:method,
-                    anArray:ref,
+                    anArray:swapped,
                     sorted:swapped
                 }
                 return state.concat(sortUpdate)
