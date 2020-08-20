@@ -1,10 +1,9 @@
 import React,{useEffect,useState} from 'react';
 import {createArray,chartChange} from '../chart/actions'
-import {createARun} from './actions'
 import { connect } from 'react-redux';
 import './AlgorithmPanel.css'
 
-const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
+const AlgorithmPanel = ({onArrayCreated,onButtonClicked}) => {
     
     let newArray = []
     
@@ -35,7 +34,6 @@ const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
     const handleSubmit =(e)=>{
         e.preventDefault()
         onButtonClicked()
-        // onButtonClicked(chartState.algo,chartState.anArray)
     }
 
 
@@ -59,14 +57,13 @@ const AlgorithmPanel = ({chartState,onArrayCreated,onButtonClicked}) => {
 }
 
 const mapStateToProps = state => ({
-    chartState:state.chartChange[state.chartChange.length - 1] //it is not chartChange state
+    chartState:state.chartChange[state.chartChange.length - 1]
 });
 
 const mapDispatchToProps = dispatch => {
     return{
         onArrayCreated:(algo,anArray)=>dispatch(createArray(algo,anArray)),
         onButtonClicked:()=>dispatch(chartChange())
-        // onButtonClicked:(method,copiedarray)=>dispatch(chartChange(method,copiedarray))
     }
 }
 

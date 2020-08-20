@@ -1,9 +1,10 @@
-import React,{useEffect,useRef,useState} from 'react';
+import React,{useEffect,useState} from 'react';
 import { connect } from 'react-redux';
+import {chartChange} from './actions'
 import "./Barchart.css"
 import * as d3 from 'd3'
 
-const Barchart = ({chartData}) => {
+const Barchart = ({chartData,onChartChangeAuto}) => {
     let newArray = []
     let len = chartData.length
     let upperLimit = chartData[len-1].anArray.length
@@ -16,18 +17,20 @@ const Barchart = ({chartData}) => {
     useEffect(()=>{
         let len = chartData.length
      
-        if(chartData[len-1].anArray===chartData[len-1].sorted || chartData[len-1].sorted.length===0){
-            console.log(chartData[len-1].sorted.length)
+        if(chartData[len-1].sorted.length===0){
+            // console.log(chartData[len-1].sorted.length)
             newArray = chartData[len-1].anArray
             console.log('Initial Render')
             setYArray(newArray)
         }
-        // else{
-        //     //insert the recursion data here
-        //     console.log('Sorting Started')
-        //     console.log(chartData[len-1].sorted)
-        //     // setYArray(chartData[len-1].sorted)
-        // }
+        else if(chartData[len-1].anArray===chartData[len-1].sorted){
+            //insert the recursion data here
+            console.log('Sorting Started \(^V^)/')
+            // console.log(chartData[len-1].sorted)
+            newArray = chartData[len-1].anArray
+            setYArray(newArray)
+            onChartChangeAuto()
+        }
         
 
         if(newArray.length!==0){
@@ -83,12 +86,12 @@ const mapStateToProps = state => ({
     chartData:state.chartChange
 });
 
-// const mapDispatchToProps = dispatch => {
-//     return{
-        
-//     }
-// }
+const mapDispatchToProps = dispatch => {
+    return{
+        onChartChangeAuto:()=>dispatch(chartChange())
+    }
+}
 
 
 
-export default connect(mapStateToProps)(Barchart)
+export default connect(mapStateToProps, mapDispatchToProps)(Barchart)
