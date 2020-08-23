@@ -8,7 +8,7 @@ const AlgorithmPanel = ({onArrayCreated,onButtonClicked}) => {
     let newArray = []
     
     const [algo,setAlgo]= useState('bubble');
-    const [arraynum,setArrayNum]=useState(7)  //source of origin
+    const [arraynum,setArrayNum]=useState(35)  //source of origin
     
     
     useEffect(()=>{
@@ -48,7 +48,7 @@ const AlgorithmPanel = ({onArrayCreated,onButtonClicked}) => {
                 </select>
             
                 <label>Number of Arrays: {arraynum}</label>
-                <input type='range'className='slider'min="1" max="15"value={arraynum}onChange={sliding}></input>
+                <input type='range'className='slider'min="1" max="70"value={arraynum}onChange={sliding}></input>
                 <input type='submit'className='runbutton'value='Run'onClick={handleSubmit}></input>
                     
             </form>

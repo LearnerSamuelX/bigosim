@@ -7,34 +7,32 @@ import * as d3 from 'd3'
 const Barchart = ({chartData,onChartChangeAuto}) => {
     let newArray = []
     let len = chartData.length
-    let upperLimit = chartData[len-1].anArray.length
+    let upperLimit = chartData.anArray.length
 
     const [XArray,setXArray]=useState(len)
-    const [Yarray,setYArray]=useState(chartData[len-1].anArray) //so the initial state here should be an empty array
+    const [Yarray,setYArray]=useState(chartData.anArray) //so the initial state here should be an empty array
     // const d3Container = useRef(null);   
 
 
     useEffect(()=>{
-        let len = chartData.length
      
-        if(chartData[len-1].sorted.length===0){
-            // console.log(chartData[len-1].sorted.length)
-            newArray = chartData[len-1].anArray
+        if(chartData.sorted.length===0){
+            console.log(chartData)
+            newArray = chartData.anArray
             console.log('Initial Render')
             setYArray(newArray)
         }
-        else if(chartData[len-1].anArray===chartData[len-1].sorted){
+        else if(chartData.anArray===chartData.sorted){
             //insert the recursion data here
             console.log('Sorting Started \(^V^)/')
-            // console.log(chartData[len-1].sorted)
-            newArray = chartData[len-1].anArray
+            newArray = chartData.anArray
             setYArray(newArray)
             onChartChangeAuto()
         }
         
 
         if(newArray.length!==0){
-            const width = 26.5*newArray.length //width of the actual chart, different than the svg element
+            const width = 15*newArray.length //width of the actual chart, different than the svg element
             const height = 70 //height of the actual chart, different than the svg element
        
             // const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
@@ -48,18 +46,17 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
             var yAxis = d3.axisLeft(y).ticks(5)
 
             //locate the chart in the middle of the svg frame: 800/2 - width/2
-            var chartGroup = svg.append('g').attr('transform','translate('+(400 - width/2)+',300)')
-        
+            var chartGroup = svg.append('g').attr('transform','translate('+(600 - width/2)+',300)')
             chartGroup.selectAll("rect").data(Yarray).enter().append("rect")
                     .attr("height",(d,i)=>d*3)
-                    .attr("width","15")
+                    .attr("width","10")
                     .attr("fill","blue")
-                    .attr('x',(d,i)=>26.5*i)
+                    .attr('x',(d,i)=>15*i)
                     .attr('y',(d,i)=>height-d*3)
                     
             chartGroup.selectAll('text').data(Yarray).enter().append("text")
-                    .attr('font-size',15)
-                    .attr('x',(d,i)=>26.5*i)
+                    .attr('font-size',10)
+                    .attr('x',(d,i)=>15*i)
                     .attr('y',(d,i)=>height-5-d*3+2)
                     .text((d,i)=>d)
             
@@ -77,13 +74,13 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
         <div id='chart-container'>
             <h3>Bar Chart</h3>
             {/* <div className="d3-component"ref={d3Container}></div> */}
-            <svg className="svg-canvas" width="800px" height="400px"></svg>
+            <svg className="svg-canvas" width="1200px" height="400px"></svg>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    chartData:state.chartChange
+    chartData:state.chartChange[state.chartChange.length - 1]
 });
 
 const mapDispatchToProps = dispatch => {
