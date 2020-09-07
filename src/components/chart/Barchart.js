@@ -17,9 +17,9 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
     useEffect(()=>{
      
         if(chartData.sorted.length===0){
-            console.log(chartData)
+            // console.log(chartData)
             newArray = chartData.anArray
-            console.log('Initial Render')
+            // console.log('Initial Render')
             setYArray(newArray)
         }
         else if(chartData.anArray===chartData.sorted){
@@ -32,7 +32,7 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
         
 
         if(newArray.length!==0){
-            const width = 15*newArray.length //width of the actual chart, different than the svg element
+            const width = 12.5*newArray.length //width of the actual chart, different than the svg element
             const height = 70 //height of the actual chart, different than the svg element
        
             // const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
@@ -46,23 +46,23 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
             var yAxis = d3.axisLeft(y).ticks(5)
 
             //locate the chart in the middle of the svg frame: 800/2 - width/2
-            var chartGroup = svg.append('g').attr('transform','translate('+(600 - width/2)+',300)')
+            var chartGroup = svg.append('g').attr('transform','translate('+(550 - width/2)+',300)')
             chartGroup.selectAll("rect").data(Yarray).enter().append("rect")
                     .attr("height",(d,i)=>d*3)
                     .attr("width","10")
                     .attr("fill","blue")
-                    .attr('x',(d,i)=>15*i)
+                    .attr('x',(d,i)=>12.5*i)
                     .attr('y',(d,i)=>height-d*3)
                     
             chartGroup.selectAll('text').data(Yarray).enter().append("text")
                     .attr('font-size',10)
-                    .attr('x',(d,i)=>15*i)
+                    .attr('x',(d,i)=>12.5*i)
                     .attr('y',(d,i)=>height-5-d*3+2)
                     .text((d,i)=>d)
             
-            chartGroup.append('g').attr('class','axis y')
-                    // .attr('transform','translate(500,76)')
-                    .call(yAxis)
+            // chartGroup.append('g').attr('class','axis y')
+            //         // .attr('transform','translate(500,76)')
+            //         .call(yAxis)
 
             chartGroup.append('g').attr('class','axis x')
                     .attr('transform','translate(0,'+height+')')
@@ -74,7 +74,7 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
         <div id='chart-container'>
             <h3>Bar Chart</h3>
             {/* <div className="d3-component"ref={d3Container}></div> */}
-            <svg className="svg-canvas" width="1200px" height="400px"></svg>
+            <svg className="svg-canvas" width="1100px" height="400px"></svg>
         </div>
     )
 }
