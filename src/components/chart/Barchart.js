@@ -32,7 +32,7 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
         
 
         if(newArray.length!==0){
-            const width = 12.5*newArray.length //width of the actual chart, different than the svg element
+            const width = 4.5*newArray.length //width of the actual chart, different than the svg element
             const height = 70 //height of the actual chart, different than the svg element
        
             // const svg = d3.select(d3Container.current).append('svg').attr('width','400').attr('height','200')
@@ -49,16 +49,16 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
             var chartGroup = svg.append('g').attr('transform','translate('+(550 - width/2)+',300)')
             chartGroup.selectAll("rect").data(Yarray).enter().append("rect")
                     .attr("height",(d,i)=>d*3)
-                    .attr("width","10")
+                    .attr("width","3.5")
                     .attr("fill","blue")
-                    .attr('x',(d,i)=>12.5*i)
+                    .attr('x',(d,i)=>4.5*i)
                     .attr('y',(d,i)=>height-d*3)
                     
-            chartGroup.selectAll('text').data(Yarray).enter().append("text")
-                    .attr('font-size',10)
-                    .attr('x',(d,i)=>12.5*i)
-                    .attr('y',(d,i)=>height-5-d*3+2)
-                    .text((d,i)=>d)
+            // chartGroup.selectAll('text').data(Yarray).enter().append("text")
+            //         .attr('font-size',10)
+            //         .attr('x',(d,i)=>4.5*i)
+            //         .attr('y',(d,i)=>height-5-d*3+2)
+            //         .text((d,i)=>d)
             
             // chartGroup.append('g').attr('class','axis y')
             //         // .attr('transform','translate(500,76)')
