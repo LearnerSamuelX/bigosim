@@ -68,7 +68,7 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
                     .attr('transform','translate(0,'+height+')')
                     .call(xAxis)
         }
-    },[chartData,Yarray])
+    },[chartData,Yarray]) //Yarray
 
     return(
         <div id='chart-container'>

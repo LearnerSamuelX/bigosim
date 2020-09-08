@@ -2,6 +2,7 @@ import {CREATE_ARRAY,CHART_CHANGE} from './actions'
 import { bubblesort } from '../algorithm/sortingcode/bubblesort';
 import { sortedCheck } from '../algorithm/sortingcode/sortedcheck';
 import { selectionsort } from '../algorithm/sortingcode/selectionsort';
+import { insertionsort } from '../algorithm/sortingcode/insertionsort';
 
 
 const initialState = [{algo:'',anArray:[],sorted:[],cursor:0,round:0}]
@@ -76,6 +77,29 @@ export const chartChange = (state=initialState,action) => {
                 if(sorted===false){
                     console.log("It is not sorted")
                     swapped = selectionsort(tobesorted,cursor_pointer)
+                }else if(sorted===true){
+                    return state
+                }
+                cursor_pointer=cursor_pointer+1
+                if(cursor_pointer>ref.length-1-round_counter){
+                    cursor_pointer =  0
+                    round_counter = round_counter + 1
+                }
+                const sortUpdate = {
+                    algo:method,
+                    anArray:swapped,
+                    sorted:swapped,
+                    cursor:cursor_pointer,
+                    round:round_counter
+                }
+                return state.concat(sortUpdate)
+            }
+
+            else if(method==='insertion'){
+                console.log('Insertion sort selected.')
+                sorted = sortedCheck(tobesorted)
+                if(sorted===false){
+                    swapped = insertionsort(tobesorted,cursor_pointer)
                 }else if(sorted===true){
                     return state
                 }

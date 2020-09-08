@@ -13,16 +13,10 @@ export function selectionsort(item,cursorPointer){
         }
     }
 
-    sorted.push(lowest);
+    sorted.push(lowest)
     truncated.splice(lowest_index,1)
-
-    console.log(sorted)
-    console.log(truncated)
     sorted.push(...truncated)
-
     item = sorted
-    console.log(item)
-
-
+    
     return item
 }
