@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bigosim/precache-manifest.6e3b4b2db8fc1b563f4fa224ad7d4467.js"
+  "/bigosim/precache-manifest.a4095827285344cdfd75c510f470364b.js"
 );
 
 self.addEventListener('message', (event) => {

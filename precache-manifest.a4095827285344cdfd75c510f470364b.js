@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6693ade0c778a2e79274c1123db4d6b0",
+    "revision": "b7752f76e63eec076dbde0a129a87668",
     "url": "/bigosim/index.html"
   },
   {
-    "revision": "c4d3b326b90645a1c0c9",
-    "url": "/bigosim/static/css/main.22f74b79.chunk.css"
+    "revision": "c9e1224b6d33e1cbad42",
+    "url": "/bigosim/static/css/main.b82c28d9.chunk.css"
   },
   {
-    "revision": "cdd6c4293db3238ff207",
-    "url": "/bigosim/static/js/2.5c5b9a7b.chunk.js"
+    "revision": "f3578b5d3133da51339b",
+    "url": "/bigosim/static/js/2.8c707fef.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/bigosim/static/js/2.5c5b9a7b.chunk.js.LICENSE.txt"
+    "url": "/bigosim/static/js/2.8c707fef.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c4d3b326b90645a1c0c9",
-    "url": "/bigosim/static/js/main.0b95c586.chunk.js"
+    "revision": "c9e1224b6d33e1cbad42",
+    "url": "/bigosim/static/js/main.5049756d.chunk.js"
   },
   {
     "revision": "4d9f065c462eb1e8ef87",
