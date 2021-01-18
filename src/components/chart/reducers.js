@@ -5,7 +5,7 @@ import { selectionsort } from '../algorithm/sortingcode/selectionsort';
 import { insertionsort } from '../algorithm/sortingcode/insertionsort';
 
 
-const initialState = [{algo:'',anArray:[],sorted:[],cursor:0,round:0}]
+const initialState = [{algo:'',anArray:[],sorted:[],cursor:0,round:0,onGoing:0}]
 
 export const chartChange = (state=initialState,action) => {
     const {type,payload} = action;
@@ -19,7 +19,8 @@ export const chartChange = (state=initialState,action) => {
                 anArray:anArray,
                 sorted:[],
                 cursor:state[0].cursor,
-                round:state[0].round
+                round:state[0].round,
+                onGoing:state[0].onGoing
            }
 
            console.log('Slider Movement Tracked')
@@ -32,6 +33,7 @@ export const chartChange = (state=initialState,action) => {
         case CHART_CHANGE: {
             //the inputs for new states are from CHANGES made on exsiting state
             let len = state.length
+            let onGoing = state.onGoing  //0,1  0--Start/Sorted  1--Being Sorted
             let method = state[len-1].algo
             let ref = state[len-1].anArray
             let tobesorted = state[len-1].anArray.slice()
@@ -46,10 +48,12 @@ export const chartChange = (state=initialState,action) => {
                     swapped = bubblesort(tobesorted,cursor_pointer)
                 }else if(tobesorted.length!==0){
                     sorted = sortedCheck(tobesorted)
-                    console.log(sorted)
+                    // console.log(sorted)
                     if(sorted===false){
                         swapped = bubblesort(tobesorted,cursor_pointer)
+                        state.OnGoing = 1
                     }else if(sorted===true){
+                        state.Ongoing = 0
                         return state
                     }   
                 }
@@ -66,7 +70,8 @@ export const chartChange = (state=initialState,action) => {
                     anArray:swapped,
                     sorted:swapped,
                     cursor:cursor_pointer,
-                    round:round_counter
+                    round:round_counter,
+                    onGoing:1
                 }
                 return state.concat(sortUpdate)
                 
@@ -77,7 +82,9 @@ export const chartChange = (state=initialState,action) => {
                 if(sorted===false){
                     console.log("It is not sorted")
                     swapped = selectionsort(tobesorted,cursor_pointer)
+                    state.OnGoing = 1;
                 }else if(sorted===true){
+                    state.OnGoing = 0;
                     return state
                 }
                 cursor_pointer=cursor_pointer+1
@@ -90,7 +97,8 @@ export const chartChange = (state=initialState,action) => {
                     anArray:swapped,
                     sorted:swapped,
                     cursor:cursor_pointer,
-                    round:round_counter
+                    round:round_counter,
+                    onGoing:1,
                 }
                 return state.concat(sortUpdate)
             }
@@ -100,7 +108,9 @@ export const chartChange = (state=initialState,action) => {
                 sorted = sortedCheck(tobesorted)
                 if(sorted===false){
                     swapped = insertionsort(tobesorted,cursor_pointer)
+                    state.OnGoing = 1;
                 }else if(sorted===true){
+                    state.OnGoing = 0;
                     return state
                 }
                 cursor_pointer=cursor_pointer+1
@@ -113,10 +123,12 @@ export const chartChange = (state=initialState,action) => {
                     anArray:swapped,
                     sorted:swapped,
                     cursor:cursor_pointer,
-                    round:round_counter
+                    round:round_counter,
+                    onGoing:1
                 }
                 return state.concat(sortUpdate)
             }
+            return
         }
         
         default:

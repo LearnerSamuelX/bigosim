@@ -12,7 +12,7 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
     const [XArray,setXArray]=useState(len)
     const [Yarray,setYArray]=useState(chartData.anArray) //so the initial state here should be an empty array
     // const d3Container = useRef(null);   
-
+    const [onGoing,setOnGoing]=useState(0)
 
     useEffect(()=>{
      
@@ -25,8 +25,10 @@ const Barchart = ({chartData,onChartChangeAuto}) => {
         else if(chartData.anArray===chartData.sorted){
             //insert the recursion data here
             console.log('Sorting Started \(^V^)/')
+            // console.log(chartData)
             newArray = chartData.anArray
             setYArray(newArray)
+            setOnGoing(chartData.onGoing)
             onChartChangeAuto()
         }
         
