@@ -9,7 +9,6 @@ const initialState = [{algo:'',anArray:[],sorted:[],cursor:0,round:0,onGoing:0}]
 
 export const chartChange = (state=initialState,action) => {
     const {type,payload} = action;
-
     switch(type){
         case CREATE_ARRAY:{
            const {algo,anArray} = payload;
@@ -31,6 +30,7 @@ export const chartChange = (state=initialState,action) => {
         }
 
         case CHART_CHANGE: {
+            
             //the inputs for new states are from CHANGES made on exsiting state
             let len = state.length
             let onGoing = state.onGoing  //0,1  0--Start/Sorted  1--Being Sorted
@@ -104,7 +104,7 @@ export const chartChange = (state=initialState,action) => {
             }
 
             else if(method==='insertion'){
-                console.log('Insertion sort selected.')
+                // console.log('Insertion sort selected.')
                 sorted = sortedCheck(tobesorted)
                 if(sorted===false){
                     swapped = insertionsort(tobesorted,cursor_pointer)
@@ -134,5 +134,6 @@ export const chartChange = (state=initialState,action) => {
         default:
             return state
     }
+    
     
 }

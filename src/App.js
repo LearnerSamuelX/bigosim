@@ -7,7 +7,7 @@ import Barchart from './components/chart/Barchart'
 function App() {
   return (
     <div className="App">
-      <h1>Sorting Big-O Simulator</h1>
+      <h1>Sorting Visualizer</h1>
       <AlgorithmPanel />
       <Barchart />
     </div>
